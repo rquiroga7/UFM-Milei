@@ -142,3 +142,19 @@ plot_salary( data = all5,
   nudge_x = -5,
   nudge_y=7
 )
+
+
+all6<- all4 %>% filter(month.x>="2021-01-01") %>% mutate(month.y=as.Date(month.y))
+salario_base_2021<-all6 %>% filter(month.x=="2021-01-01") %>% pull(salario_ipc_base)
+all6<-all6 %>% mutate(salario_aj_2021 = as.numeric(salario_ipc_base/salario_base_2021*100)) %>% ungroup()
+#Now do a red line lineplot using all5
+
+split_date <- "2023-12-10"
+plot <- create_salary_plot(all6, split_date,caption)+
+#Add an annotation that says "Engañoso!" at 2023-08-01
+annotate("text", size = 7, x = as.Date("2023-07-15"), y = min(all6$salario_aj_2021) + 2, label = "Engañoso!", hjust = 0, size = 5, color = "black")
+ggsave("salario_mensual_mal.png", plot = plot, width = 15, height = 9, dpi = 300)
+
+split_date <- "2023-11-01"
+plot <- create_salary_plot(all6, split_date,caption)
+ggsave("salario_mensual_bien.png", plot = plot, width = 15, height = 9, dpi = 300)
