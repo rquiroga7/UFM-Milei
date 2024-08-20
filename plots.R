@@ -91,7 +91,7 @@ caption= "Fuente: INDEC. Salario real = Índice de salarios totales (públicos, 
 plot_salary( data = all2 %>% filter(anio > 2016) %>% mutate(anio=factor(anio)),
   title = "Salario real (ajustado por inflación) con base=100 para enero de cada año",
   x_labels = c("Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"),
-  file_name = "salario_base100_enero.png",
+  file_name = "salario_base100_enero_MAL.png",
   annotate_text = "Engañoso!",
   caption = caption
 )

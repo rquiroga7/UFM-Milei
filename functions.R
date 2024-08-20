@@ -39,6 +39,7 @@ create_salary_plot <- function(ipc_plot, split_date, caption = "") {
     annotate(geom = "rect", xmin = as.Date("2021-01-01") - 30, xmax = as.Date(split_date), ymin = min(ipc_plot$salario_aj_2021) - 2, ymax = max(ipc_plot$salario_aj_2021) + 3, fill = "#bc191e", alpha = 0.05) +
     # Make red geom_line smooth but force it to pass through points
     geom_xspline(color = "red", spline_shape = -0.5) +
+    geom_point(color="red",size=3)+
     aes(lwd = 1.4) +
     scale_linewidth_identity() +
     # Add a dotted gray vertical line at split_date
