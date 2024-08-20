@@ -1,5 +1,5 @@
 
-create_ipc_plot <- function(ipc_plot, split_date) {
+create_ipc_plot <- function(ipc_plot, split_date,caption="") {
   ggplot(data = ipc_plot, aes(x = month, y = variation)) +
     # Background light green rectangle for dates > split_date and light red for dates < split_date
     annotate(geom = "rect", xmin = as.Date(split_date), xmax = max(ipc_plot$month) + 30, ymin = 0 - 0.02, ymax = max(ipc_plot$variation) + 0.03, fill = "green", alpha = 0.1) +
@@ -25,5 +25,42 @@ create_ipc_plot <- function(ipc_plot, split_date) {
     annotate(geom = "text", size = 7, x = as.Date("2022-01-01") + 65, y = max(ipc_plot$variation) - 0.01, label = expression(bold("Período\nPre-Milei")), color = "red") +
     annotate(geom = "text", size = 7, x = as.Date("2023-12-01") + 65, y = max(ipc_plot$variation) - 0.01, label = expression(bold("Período\nMilei")), color = "green") +
     # Put legend on top and rotate x axis labels 90 degrees
-    theme(legend.position = "top", axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5))
+    theme(legend.position = "top", axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5))+
+    labs(caption = caption)
+}
+
+plot_salary <- function(data, x_var="mes", y_var="salario_base100", color_var="anio", label_var="label", title="", x_labels=NULL, file_name="", caption=NULL, annotate_text = NULL,set_y_limits=TRUE,repel_direction="both",nudge_x=0.2,nudge_y=0) {
+  p <- ggplot(data, aes_string(x = x_var, y = y_var, color = color_var)) +
+    geom_label_repel(aes_string(label = label_var), na.rm = TRUE, show.legend = FALSE, nudge_x = nudge_x,nudge_y = nudge_y, hjust = 0, fontface = "bold", direction = repel_direction,min.segment.length = 0.01) +
+    scale_color_manual(name = "Gobierno",
+                       values = custom_colors,
+                       breaks = c("2017", "2020", "2024"),
+                       labels = c("Macri", "Fernández", "Milei")) +
+    labs(x = "Mes", y = "Salario (índice)", title = title) +
+    theme_light(base_size = 16) +
+    theme(legend.position = "top") +
+    labs(caption = caption)
+  
+  if (set_y_limits) {
+    p <- p + geom_xspline(aes(lwd = 2)) + scale_linewidth_identity()
+    p <- p + scale_y_continuous(limits = c(80, 107), breaks = seq(80, 110, 5), minor_breaks = NULL)
+  } else {
+    p <- p + geom_path(size=1.6)
+    p <- p + scale_y_continuous(breaks = seq(50, 110, 5), minor_breaks = NULL)
+  }
+
+  if (!is.null(x_labels)) {
+    p <- p + scale_x_continuous(limits = c(1, 13), breaks = seq(1, 12, 1), labels = x_labels, minor_breaks = NULL)
+  } else {
+    x_min <- min(data[[x_var]], na.rm = TRUE)
+    x_max <- max(data[[x_var]], na.rm = TRUE) + 45
+    p <- p + scale_x_date(date_breaks="1 year", minor_breaks = NULL, limits = c(x_min, x_max)) +
+    labs(x="Fecha")
+  }
+  
+  if (!is.null(annotate_text)) {
+    p <- p + annotate("text", size = 7, x = 4, y = 107, label = annotate_text, hjust = 0, size = 5, color = "black")
+  }
+  
+  ggsave(file_name, plot = p, width = 15, height = 9, dpi = 300)
 }
