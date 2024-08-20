@@ -89,7 +89,7 @@ all2 <- all2 %>%
 caption= "Fuente: INDEC. Salario real = Índice de salarios totales (públicos, privados, registrados y no registrados), ajustados por IPC. Elaboración: @rquiroga777.\nCódigo disponible en: https://github.com/rquiroga7/UFM-Milei"
 # Plot the first graph
 plot_salary( data = all2 %>% filter(anio > 2016) %>% mutate(anio=factor(anio)),
-  title = "Salario real con base=100 para enero de cada año",
+  title = "Salario real (ajustado por inflación) con base=100 para enero de cada año",
   x_labels = c("Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"),
   file_name = "salario_base100_enero.png",
   annotate_text = "Engañoso!",
@@ -107,7 +107,7 @@ all3 <- all3 %>%
 
 # Plot the second graph
 plot_salary( data = all3 %>% filter(anio > 2016) %>% mutate(anio=factor(anio)),
-  title = "Salario real con base=100 para nov del año anterior",
+  title = "Salario real (ajustado por inflación) con base=100 para nov del año anterior",
   x_labels = c("Nov", "Dic", "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct"),
   file_name = "salario_base100_enero_BIEN.png",
     caption = caption
@@ -132,7 +132,7 @@ all5 <- bind_rows(all4, duplicated_rows)  %>%   mutate(anio=factor(anio)) %>% ar
     
 #Now generate a similar plot but with a continous line using all2
 plot_salary( data = all5,
-  title = "Salario real con base=100 para enero de 2017",
+  title = "Salario real (ajustado por inflación) con base=100 para enero de 2017",
   x_var = "month.y",
   y_var= "salario_ipc_base",
   file_name = "salario_continuo.png",

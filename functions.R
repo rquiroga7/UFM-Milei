@@ -2,8 +2,8 @@
 create_ipc_plot <- function(ipc_plot, split_date,caption="") {
   ggplot(data = ipc_plot, aes(x = month, y = variation)) +
     # Background light green rectangle for dates > split_date and light red for dates < split_date
-    annotate(geom = "rect", xmin = as.Date(split_date), xmax = max(ipc_plot$month) + 30, ymin = 0 - 0.02, ymax = max(ipc_plot$variation) + 0.03, fill = "green", alpha = 0.1) +
-    annotate(geom = "rect", xmin = as.Date("2022-01-01") - 30, xmax = as.Date(split_date), ymin = 0 - 0.02, ymax = max(ipc_plot$variation) + 0.03, fill = "red", alpha = 0.1) +
+    annotate(geom = "rect", xmin = as.Date(split_date), xmax = max(ipc_plot$month) + 30, ymin = 0 - 0.02, ymax = max(ipc_plot$variation) + 0.03, fill = "#08d6a2", alpha = 0.05) +
+    annotate(geom = "rect", xmin = as.Date("2022-01-01") - 30, xmax = as.Date(split_date), ymin = 0 - 0.02, ymax = max(ipc_plot$variation) + 0.03, fill = "#bc191e", alpha = 0.05) +
     # Make red geom_line smooth but force it to pass through points
     geom_xspline(color = "red", spline_shape = -0.5) +
     aes(lwd = 1.4) +
@@ -22,8 +22,8 @@ create_ipc_plot <- function(ipc_plot, split_date,caption="") {
          y = "IPC mensual") +
     theme_light(base_size = 16) +
     # Add left aligned text label "Período\nPre-Milei" in red at x = 2022-01-01+35 and "Perído\nMilei" in green at x = 2023-12-01+35
-    annotate(geom = "text", size = 7, x = as.Date("2022-01-01") + 65, y = max(ipc_plot$variation) - 0.01, label = expression(bold("Período\nPre-Milei")), color = "red") +
-    annotate(geom = "text", size = 7, x = as.Date("2023-12-01") + 65, y = max(ipc_plot$variation) - 0.01, label = expression(bold("Período\nMilei")), color = "green") +
+    annotate(geom = "text", size = 7, x = as.Date("2022-01-01") + 65, y = max(ipc_plot$variation) - 0.01, label = expression(bold("Período\nPre-Milei")), color = "#bc191e") +
+    annotate(geom = "text", size = 7, x = as.Date("2023-12-01") + 65, y = max(ipc_plot$variation) - 0.01, label = expression(bold("Período\nMilei")), color = "#08d6a2") +
     # Put legend on top and rotate x axis labels 90 degrees
     theme(legend.position = "top", axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5))+
     labs(caption = caption)
