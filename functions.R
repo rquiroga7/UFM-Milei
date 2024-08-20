@@ -75,10 +75,10 @@ plot_salary <- function(data, x_var="mes", y_var="salario_base100", color_var="a
   
   if (set_y_limits) {
     p <- p + geom_xspline(aes(lwd = 2)) + scale_linewidth_identity()
-    p <- p + scale_y_continuous(limits = c(80, 107), breaks = seq(80, 110, 5), minor_breaks = NULL)
+    p <- p + scale_y_continuous(limits = c(80, 107), breaks = seq(40, 110, 5), minor_breaks = NULL)
   } else {
     p <- p + geom_path(size=1.6)
-    p <- p + scale_y_continuous(breaks = seq(50, 110, 5), minor_breaks = NULL)
+    p <- p + scale_y_continuous(breaks = seq(40, 110, 5), minor_breaks = NULL)
   }
 
   if (!is.null(x_labels)) {
@@ -95,4 +95,34 @@ plot_salary <- function(data, x_var="mes", y_var="salario_base100", color_var="a
   }
   
   ggsave(file_name, plot = p, width = 15, height = 9, dpi = 300)
+}
+
+process_salary_data <- function(variable = "",dataset="all2") {
+  variable_y <- sym(variable)
+  first_salario_ipc <- first(get(dataset) %>% filter(anio > 2016) %>% mutate(salario_ipc = !!variable_y / ipc) %>% pull(salario_ipc))
+  
+  all5 <- get(dataset) %>% 
+    filter(anio > 2016) %>% 
+    mutate(anio2 = anio) %>% 
+    mutate(anio = ifelse(anio == 2019 & mes == 12, 2020, anio)) %>% 
+    mutate(anio = ifelse(anio == 2023 & mes == 12, 2024, anio)) %>%
+    mutate(salario_ipc = !!variable_y / ipc * 100) %>%
+    mutate(salario_ipc_base = round(salario_ipc / first_salario_ipc, 1)) %>%
+    group_by(anio2) %>%
+    mutate(label = ifelse((month.x == as.Date("2017-01-01")) | 
+                          (mes == max(mes) & anio == anio2) | 
+                          (mes == 11 & lead(anio, 1) != anio2), 
+                          paste0(month.x, ": ", round(salario_ipc_base, 1)), NA)) %>%
+    ungroup()
+
+duplicated_rows <- all5 %>%
+    group_by(anio) %>%
+    filter(row_number() == n()) %>%
+    mutate(anio = anio + 1) %>%
+    mutate(label = NA) %>%
+    ungroup()
+# Combine the original data with the duplicated rows
+all5 <- bind_rows(all5, duplicated_rows)  %>%   mutate(anio=factor(anio)) %>% arrange(month.x)
+
+return(all5)
 }

@@ -47,9 +47,25 @@ Ahora realizamos un gráfico similar, pero tomando como base el mes de noviembre
 ![Salario real con base 100 para noviembre del año anterior](salario_base100_enero_BIEN.png)
 
 
-Por último, graficamos el indice de salario real (ajustado por inflación) desde 2017  para entender por qué la situación salarial actual es tan agobiante aunque parece haber un ligero repunte desde el mes de mayo (casi exclusivamente debido a los salarios privados registrados, ya que los salarios públicos y los no registrados siguen sin mejoras desde diciembre de 2023). Vemos que se vienen sumando grandes caídas del salario real en los años 2018, 2019 y 2024, acumulado con las caídas menores de los años 2020, 2021 y 2023.
+### Salario real promedio para el período 2017-2024
+
+Por último, graficamos el indice de salario real (ajustado por inflación) desde 2017  para entender por qué la situación salarial actual es tan agobiante aunque parece haber un ligero repunte desde el mes de mayo. Vemos que se vienen sumando grandes caídas del salario real en los años 2018, 2019 y 2024, acumulado con las caídas menores de los años 2020, 2021 y 2023.
 
 ![Salario real 2017-2024 con base 100 para enero de 2017](salario_continuo.png)
+
+
+Al analizar los salarios reales de los trabajadores registrados del sector privado, vemos que es el único sector con recuperación significativa en los meses de mayo y junio de 2024, aunque aún no alcanza a compensar la pérdida de diciembre de 2023.
+![Salario real trabajadores privados registrados para 2017-2024 con base 100 para enero de 2017](salario_continuo_privreg.png)
+
+Al analizar los salarios reales de los trabajadores no registrados del sector privado, vemos que es el sector con mayor pérdida salarial en el período analizado, y hay poca recuperación en los meses de mayo y junio de 2024.
+![Salario real trabajadores privados no registrados para 2017-2024 con base 100 para enero de 2017](salario_continuo_privnoreg.png)
+
+Al analizar los salarios reales de los trabajadores del sector público, vemos que la recuperación en los meses de mayo y junio de 2024 es casi nula.
+![Salario real trabajadores privados no registrados para 2017-2024 con base 100 para enero de 2017](salario_continuo_publico.png)
+
+
+En resumen, aunque en algunos sectores se observa una recuperación de los salarios para mayo y junio, no alcanza para compensar la pérdida de poder adquisitivo que produjo la devaluación decidida en diciembre de 2023 por el gobierno de Milei, mientras que en los sectores públicos y no registrados, el poder adquisitivo de los salarios está en una situación crítica, encontrándose en mínimos históricos para el período analizado.
+
 
 ## Fuente de los datos
 

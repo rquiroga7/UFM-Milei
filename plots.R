@@ -113,35 +113,48 @@ plot_salary( data = all3 %>% filter(anio > 2016) %>% mutate(anio=factor(anio)),
     caption = caption
 )
 
-first_salario_ipc <- first(all2 %>% filter(anio > 2016) %>% mutate(salario_ipc = total_indice / ipc) %>% pull(salario_ipc))
-all4<-all2 %>% filter(anio > 2016) %>% mutate(anio2=anio) %>% mutate(anio=ifelse(anio==2019 & mes==12,2020,anio)) %>% mutate(anio=ifelse(anio==2023 & mes==12,2024,anio)) %>%
-    mutate(salario_ipc=total_indice/ipc*100) %>%
-    mutate(salario_ipc_base=round(salario_ipc/first_salario_ipc,1)) %>%
-    group_by(anio2) %>%
-    mutate(label = ifelse((month.x==as.Date("2017-01-01")) | (mes == max(mes) & anio==anio2) | (mes==11 & lead(anio,1)!=anio2), paste0(month.x, ": ", round(salario_ipc_base,1)), NA)) %>%
-    ungroup()
-#Duplicate the last row of each anio, changing the anio to anio+1
-duplicated_rows <- all4 %>%
-    group_by(anio) %>%
-    filter(row_number() == n()) %>%
-    mutate(anio = anio + 1) %>%
-    mutate(label = NA) %>%
-    ungroup()
+
+
+
 # Combine the original data with the duplicated rows
-all5 <- bind_rows(all4, duplicated_rows)  %>%   mutate(anio=factor(anio)) %>% arrange(month.x)
-    
-#Now generate a similar plot but with a continous line using all2
+all5<-process_salary_data(variable="total_indice",dataset="all2")
+#Now generate a similar plot but with a continous line using all2 for 2017-2024
 plot_salary( data = all5,
-  title = "Salario real (ajustado por inflación) con base=100 para enero de 2017",
-  x_var = "month.y",
-  y_var= "salario_ipc_base",
+  title = "Salario real promedio (ajustado por inflación) con base=100 para enero de 2017",
+  x_var = "month.y",   y_var= "salario_ipc_base",   
   file_name = "salario_continuo.png",
-  caption = caption,
-  set_y_limits = FALSE,
-  repel_direction = "y",
-  nudge_x = 0,
-  nudge_y=7
+  caption = caption,   set_y_limits = FALSE,   repel_direction = "y",   nudge_x = 0,   nudge_y=7
 )
+
+all5b<-process_salary_data(variable="publico",dataset="all2")
+caption= "Fuente: INDEC. Salario real = Índice de salarios públicos, ajustados por IPC. Elaboración: @rquiroga777.\nCódigo disponible en: https://github.com/rquiroga7/UFM-Milei"
+plot_salary( data = all5b,
+  title = "Salario real del sector público (ajustado por inflación) con base=100 para enero de 2017",
+  x_var = "month.y",   y_var= "salario_ipc_base",   
+  file_name = "salario_continuo_publico.png",
+  caption = caption,   set_y_limits = FALSE,   repel_direction = "y",   nudge_x = 0,   nudge_y=7
+)
+
+all5c<-process_salary_data(variable="privado_registrado",dataset="all2")
+caption= "Fuente: INDEC. Salario real = Índice de salarios privados registrados, ajustados por IPC. Elaboración: @rquiroga777.\nCódigo disponible en: https://github.com/rquiroga7/UFM-Milei"
+plot_salary( data = all5c,
+  title = "Salario real del sector privado registrado (ajustado por inflación) con base=100 para enero de 2017",
+  x_var = "month.y",   y_var= "salario_ipc_base",   
+  file_name = "salario_continuo_privreg.png",
+  caption = caption,   set_y_limits = FALSE,   repel_direction = "y",   nudge_x = 0,   nudge_y=7
+)
+
+all5d<-process_salary_data(variable="privado_no_registrado",dataset="all2")
+caption= "Fuente: INDEC. Salario real = Índice de salarios privados no registrados, ajustados por IPC. Elaboración: @rquiroga777.\nCódigo disponible en: https://github.com/rquiroga7/UFM-Milei"
+plot_salary( data = all5d,
+  title = "Salario real del sector privado no registrado (ajustado por inflación) con base=100 para enero de 2017",
+  x_var = "month.y",   y_var= "salario_ipc_base",   
+  file_name = "salario_continuo_privnoreg.png",
+  caption = caption,   set_y_limits = FALSE,   repel_direction = "y",   nudge_x = 0,   nudge_y=7
+)
+
+
+
 
 
 all6<- all4 %>% filter(month.x>="2021-01-01") %>% mutate(month.y=as.Date(month.y))
