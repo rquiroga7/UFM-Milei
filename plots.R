@@ -118,7 +118,7 @@ all4<-all2 %>% filter(anio > 2016) %>% mutate(anio2=anio) %>% mutate(anio=ifelse
     mutate(salario_ipc=total_indice/ipc*100) %>%
     mutate(salario_ipc_base=round(salario_ipc/first_salario_ipc,1)) %>%
     group_by(anio2) %>%
-    mutate(label = ifelse((mes == max(mes) & anio==anio2) | (mes==11 & lead(anio,1)!=anio2), paste0(month.x, ": ", round(salario_ipc_base,1)), NA)) %>%
+    mutate(label = ifelse((month.x==as.Date("2017-01-01")) | (mes == max(mes) & anio==anio2) | (mes==11 & lead(anio,1)!=anio2), paste0(month.x, ": ", round(salario_ipc_base,1)), NA)) %>%
     ungroup()
 #Duplicate the last row of each anio, changing the anio to anio+1
 duplicated_rows <- all4 %>%
@@ -139,7 +139,7 @@ plot_salary( data = all5,
   caption = caption,
   set_y_limits = FALSE,
   repel_direction = "y",
-  nudge_x = -5,
+  nudge_x = 0,
   nudge_y=7
 )
 
