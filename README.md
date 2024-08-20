@@ -28,7 +28,7 @@ Ahora, corregimos la fecha de "cambio de gobierno". El panorama que muestra este
 El gráfico engañoso de la UFM repite el mismo error de antes. Grafica la inflación que corresponde a todo el mes de diciembre el 01/12/2024.
 ![Gráfico de la UFM: Salarios reales 2021-2024](GVHgOpwW0AAhhgH.jpeg)
 
-Repetimos este gráfico con los datos INDEC:
+Repetimos este gráfico engañoso con los datos INDEC, y coloreando cada línea anual de acuerdo a la presidencia correspondiente:
 ![Gráfico de salarios 2021-2024 engañoso](salario_mensual_mal.png)
 
 Ahora, corregimos la fecha de "cambio de gobierno", quedando más claro que la pequeña recomposición salarial observada en mayo y junio de 2024 es aún insuficiente para compensar la pérdida ocurrida en diciembre de 2023 tras la devaluación del peso argentino de más del 50% decidida por Milei.
