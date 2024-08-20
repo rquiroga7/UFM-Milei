@@ -19,19 +19,19 @@ Luego, grafica la fecha de asunción de Milei el día 10 de diciembre de 2023, l
 Repetimos este gráfico con los datos INDEC:
 ![Gráfico de inflación mensual engañoso](ipc_mensual_mal.png)
 
-Ahora, corregimos la fecha de "cambio de gobierno", quedando más claro que el dato de inflación de diciembre corresponde en gran medida al gobierno de Milei.
+Ahora, corregimos la fecha de "cambio de gobierno". El panorama que muestra este gráfico es muy distinto del anterior. Queda claro que la pequeña mejora de los últimos meses ocurre luego de un gran salto inflacionario en diciembre, y los niveles de inflación de mayo y junio de 2024 son similares a los de principios de 2022.
 ![Gráfico de inflación mensual correcto](ipc_mensual_bien.png)
 
 
 ### Salario real para el período 2021-2024
 
-El gráfico engañoso de la UFM repite el mismo error de antes. Grafica la inflación del mes de diciembre el 01/12/2024, cuando ese es el valor de inflación promedio para todo el mes. 
+El gráfico engañoso de la UFM repite el mismo error de antes. Grafica la inflación que corresponde a todo el mes de diciembre el 01/12/2024.
 ![Gráfico de la UFM: Salarios reales 2021-2024](GVHgOpwW0AAhhgH.jpeg)
 
 Repetimos este gráfico con los datos INDEC:
 ![Gráfico de salarios 2021-2024 engañoso](salario_mensual_mal.png)
 
-Ahora, corregimos la fecha de "cambio de gobierno", quedando más claro que el dato de inflación de diciembre corresponde en gran medida al gobierno de Milei.
+Ahora, corregimos la fecha de "cambio de gobierno", quedando más claro que la pequeña recomposición salarial observada en mayo y junio de 2024 es aún insuficiente para compensar la pérdida ocurrida en diciembre de 2023 tras la devaluación del peso argentino de más del 50% decidida por Milei.
 ![Gráfico de salarios 2021-2024 correcto](salario_mensual_bien.png)
 
 
