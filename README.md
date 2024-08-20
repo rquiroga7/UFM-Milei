@@ -1,4 +1,4 @@
-# Repositorio de análisis de salario real
+# Análisis de la variación de los salarios reales en la presidencia de Javier Milei en Argentina
 
 Este repositorio contiene un análisis del salario real en Argentina, utilizando datos del INDEC. Se intentará mostrar que los gráficos generados por la "Milei Reform Watch" de la UFM, Universidad Francisco Marroquín (https://milei.ufm.edu/es/) son engañosos y pretenden deslindar al gobierno de Milei del empeoramiento de la inflación ocurrido en diciembre de 2023 producto de la devaluación efectuada por el gobierno de Milei el 13 de diciembre de 2023.
 
